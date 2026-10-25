@@ -29,6 +29,18 @@ order by score desc --asc*/
 
 -- Sort by the country and then by the highest score
 
-select*
+/*select*
 from customers
-order by country asc,score desc
+order by country asc,score desc*/
+
+--Find the total score of each country
+
+select country, sum(score) as Total
+from customers
+group by country
+
+--Find the total score and total number of customers for each country
+
+select country, sum(score) as Total, count(id) as Total_customers
+from customers
+group by country
