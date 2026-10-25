@@ -35,12 +35,22 @@ order by country asc,score desc*/
 
 --Find the total score of each country
 
-select country, sum(score) as Total
+/*select country, sum(score) as Total
 from customers
-group by country
+group by country*/
 
 --Find the total score and total number of customers for each country
 
-select country, sum(score) as Total, count(id) as Total_customers
+/*select country, sum(score) as Total, count(id) as Total_customers
 from customers
+group by country*/
+
+/*Find the average score of each country
+Considering customers with a score not equal to zero
+and reture only countries with an average score greater than 430*/
+
+select country,avg(score) as avg_score
+from customers
+where score != 0
 group by country
+having avg(score) > 430
