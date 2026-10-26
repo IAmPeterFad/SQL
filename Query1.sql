@@ -89,3 +89,18 @@ id,
 first_name,
 'New Cutomers' as customer_type
 from customers
+
+--Data Definition Language
+
+/*Create a new table called persons with
+columns: id,person_name,birthday and phone*/
+
+create table persons (
+id int not null,
+person_name varchar(50)not null,
+birthday date,
+phone varchar(15) not null,
+constraint pk_persons primary key (id)
+)
+
+select* from persons
