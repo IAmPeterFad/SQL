@@ -119,7 +119,7 @@ drop column phone
 
 --Delete table from database
 
-drop table persons
+--drop table persons
 
 --Data Manipulation
 
@@ -132,3 +132,36 @@ select* from customers
 
 insert into customers(id, first_name)
 values (9, 'Sarah')
+
+--Insert data from 'customers' to 'persons'
+
+insert into persons(id,person_name,birthday,phone)
+select id,first_name,null as birthday,'unknown' as phone
+from customers
+
+select* from persons
+
+--Change the score of customers id 6 to 0
+
+update customers
+set score = 0
+where id = 6
+
+select* from customers
+where id = 10
+
+--Change the score of customer 10 to 0 and update the country to uk
+
+update customers
+set score = 0, country = 'UK'
+where id = 10
+
+--Update all customers with null score to 0
+
+update customers
+set score = 0
+where score is null
+
+select* from customers
+where score is null
+
