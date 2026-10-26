@@ -30,3 +30,14 @@ where score < 500
 
 select* from customers
 where score <= 500
+
+--Logical Operators
+--Retrieve all customers from USA and have a score greater than 500
+
+select* from customers
+where country = 'USA' and score > 500
+
+--Retrieve all customers who are either from USA or have a score greater than 500
+
+select* from customers
+where country = 'USA' or score > 500
