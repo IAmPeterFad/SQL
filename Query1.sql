@@ -104,3 +104,19 @@ constraint pk_persons primary key (id)
 )
 
 select* from persons
+
+--Add a new column called email to the person table
+
+alter table persons
+add email varchar(50) not null 
+
+select* from persons
+
+--Remove the column phone from the person table
+
+alter table persons
+drop column phone
+
+--Delete table from database
+
+drop table persons
