@@ -165,3 +165,17 @@ where score is null
 select* from customers
 where score is null
 
+--Delete all customers with an id greater than 5.
+
+delete from customers
+where id > 5
+
+select* from customers
+where id > 5
+
+--Delete all data from table persons
+
+delete from persons
+truncate table persons
+
+select* from persons
