@@ -178,4 +178,4 @@ where id > 5
 delete from persons
 truncate table persons
 
-select* from persons
+select* from customers
