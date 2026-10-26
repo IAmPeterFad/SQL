@@ -120,3 +120,15 @@ drop column phone
 --Delete table from database
 
 drop table persons
+
+--Data Manipulation
+
+insert into customers(id,first_name,country,score)
+values
+(6, 'Anna', 'USA', null ),
+(7, 'Sam', null, 100)
+
+select* from customers
+
+insert into customers(id, first_name)
+values (9, 'Sarah')
