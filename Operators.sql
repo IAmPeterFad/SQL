@@ -64,3 +64,23 @@ where country = 'Germany' or country = 'USA'
 
 select* from customers
 where country in ('Germany', 'USA')
+
+--Find all customers whose first name start with M
+
+select* from customers
+where first_name like 'M%'
+
+--Find all customers whose first name end with n
+
+select* from customers
+where first_name like '%n'
+
+--Find all customers whose first name contain 'r'
+
+select* from customers
+where first_name like '%r%'
+
+--Find all customers with first name has 'r' in the third position
+
+select* from customers
+where first_name like '__r%'
