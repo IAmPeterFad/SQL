@@ -46,3 +46,49 @@ select c.id,c.first_name,o.order_id,o.sales
 from customers as c
 full join orders as o
 on id = customer_id
+
+--Advanced Join Types
+--Left anti join
+--Get all customers who haven't place any order
+
+select* from customers
+left join orders
+on id = customer_id
+where customer_id is null
+
+--Right anti join
+--Get all orders without matching customers
+
+select* from customers
+right join orders
+on id = customer_id
+where id is null
+
+--Using left join
+
+select* from orders
+left join customers
+on id = customer_id
+where id is null
+
+--Full anti join
+--Find customers without orders and orders without customers
+
+select* from customers
+full join orders
+on id = customer_id
+where id is null or customer_id is null
+
+/*Get all customers along with their orders, 
+but only for customers who have placed an order without using inner join*/
+
+select* from customers
+left join orders
+on id = customer_id
+where customer_id is not null
+
+--Cross join
+--Generate all possible combinations of customers and orders
+
+select* from customers
+cross join orders
