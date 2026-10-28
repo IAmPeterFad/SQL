@@ -10,7 +10,15 @@ select* from SalesDB.Sales.Customers
 select* from SalesDB.Sales.Employees
 select* from SalesDB.Sales.Products
 
-select o.OrderID,c.FirstName,c.LastName,p.Product,o.sales,p.Price,e.FirstName
+select 
+o.OrderID,
+c.FirstName as CustomerFirstName,
+c.LastName as CustomerLastName,
+p.Product,
+o.sales,
+p.Price,
+e.FirstName as EmployeeFirstName,
+e.lastname as EmployeeLastName
 from SalesDB.Sales.Orders as o
 left join SalesDB.Sales.Customers as c
 on o.CustomerID = c.CustomerID
