@@ -72,3 +72,37 @@ round(3.516, 0) as Round0
 select -10,
 abs(-10),
 abs(10)
+
+--Date and Time Function
+
+select 
+OrderID,
+CreationTime,
+'2026-10-31' HardCoded,
+getdate() Today
+from SalesDB.Sales.Orders
+
+select
+OrderID,
+CreationTime,
+--datetrunc
+datetrunc(day, CreationTime) as Day_DT,
+datetrunc(minute, CreationTime) as minute_DT,
+--datename
+datename(month,CreationTime) as Month_Name,
+datename(weekday, CreationTime) as Day_Name,
+--Datepart
+datepart(quarter, CreationTime) as Quarter,
+datepart(weekday, CreationTime) as Weekday,
+datepart(week, CreationTime) as Week,
+datepart(hour, CreationTime) as Hour,
+year(CreationTime) as Year,
+month(CreationTime) as Month,
+day(CreationTime) as Day
+from SalesDB.Sales.Orders
+
+select
+datetrunc(month,CreationTime) as CreationTime,
+count(*) as GP
+from SalesDB.Sales.Orders
+group by datetrunc(month,CreationTime)
