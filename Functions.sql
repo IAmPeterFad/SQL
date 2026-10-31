@@ -106,3 +106,12 @@ datetrunc(month,CreationTime) as CreationTime,
 count(*) as GP
 from SalesDB.Sales.Orders
 group by datetrunc(month,CreationTime)
+
+--End of month
+
+select
+OrderID,
+CreationTime,
+eomonth(CreationTime) as EndOfMonth,
+datetrunc(month, CreationTime) as StartOfMonth
+from salesDB.sales.orders
