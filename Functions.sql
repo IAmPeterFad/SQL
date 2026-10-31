@@ -40,3 +40,24 @@ replace('123-456-7890','-', '') as clean_phone
 
 select 'report.txt' as file_name,
 replace('report.txt', '.txt', '.csv') as new_filename
+
+--Calculate the length of each customer's first name
+
+select first_name, len(first_name) as length
+from customers
+
+--Retrieve the first two characters of each first name
+
+select left(trim(first_name), 2) 
+from customers
+
+--Retrieve the last two characters of each first name
+
+select first_name, right(first_name, 2) as last_2
+from customers
+
+--Substring
+--Retrieve the list of customers first name after removing the first character
+
+select first_name, substring(trim(first_name),2) --len(trim(first_name)) -1 
+from customers
