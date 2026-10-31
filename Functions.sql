@@ -30,4 +30,13 @@ select
 from customers
 where first_name != trim(first_name)
 
+--Replace
+--Remove dashes(-) from a phone number
 
+select '123-456-7890' as Phone,
+replace('123-456-7890','-', '') as clean_phone
+
+--Replace the file extence from .txt to .csv
+
+select 'report.txt' as file_name,
+replace('report.txt', '.txt', '.csv') as new_filename
