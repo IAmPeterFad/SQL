@@ -61,3 +61,14 @@ from customers
 
 select first_name, substring(trim(first_name),2) --len(trim(first_name)) -1 
 from customers
+
+--Numbers Functions
+
+select 3.516 as Number,
+round(3.516, 1) as Round1,
+round(3.516, 2) as Round2,
+round(3.516, 0) as Round0
+
+select -10,
+abs(-10),
+abs(10)
