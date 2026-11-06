@@ -113,5 +113,24 @@ select
 OrderID,
 CreationTime,
 eomonth(CreationTime) as EndOfMonth,
-datetrunc(month, CreationTime) as StartOfMonth
+cast(datetrunc(month, CreationTime) as date) as StartOfMonth
 from salesDB.sales.orders
+
+--How many order were placed each years?
+
+select year(OrderDate) as year, count(*) NrOfOrders
+from SalesDB.Sales.Orders
+group by year(OrderDate)
+
+--How many order were placed each month?
+
+select datename(month, OrderDate) as Month, count(*) as NrOfOrders
+from SalesDB.Sales.Orders
+group by datename(month, OrderDate)
+
+--Show all orders that were placed during the month of february
+
+select OrderID, datename(month, OrderDate) as Month, OrderStatus, Quantity
+from SalesDB.Sales.Orders
+where month(OrderDate) = 2 --Always use numbers to filter
+--where datename(month, OrderDate) = 'February'
