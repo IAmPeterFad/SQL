@@ -134,3 +134,40 @@ select OrderID, datename(month, OrderDate) as Month, OrderStatus, Quantity
 from SalesDB.Sales.Orders
 where month(OrderDate) = 2 --Always use numbers to filter
 --where datename(month, OrderDate) = 'February'
+
+--Date Formating
+
+select
+OrderID,
+CreationTime,
+format(CreationTime, 'MM-dd-yyyy') USA_Format,
+format(CreationTime, 'dd-MM-yyyy') EUPO_Format,
+format(CreationTime,'dd') dd,
+format(CreationTime,'ddd') ddd,
+format(CreationTime,'dddd') dddd,
+format(CreationTime,'MM') MM,
+format(CreationTime,'MMM') MMM,
+format(CreationTime,'MMMM') MMMM
+from SalesDB.Sales.Orders
+
+--Show Creation Date Using the Format
+--Day Wed Jan Q1 2025 12:34:56 PM
+
+select
+OrderID,
+CreationTime,
+format(CreationTime, 'dd ddd MMM ')+ 'Q' + 
+datename(quarter, CreationTime) + 
+format(CreationTime, ' yyyy hh:mm:ss tt') as Format
+from SalesDB.Sales.Orders
+
+select
+format(OrderDate, 'MMM, yy') OrderDate,
+count(*) Group_
+from SalesDB.Sales.Orders
+group by format(OrderDate, 'MMM, yy')
+
+select
+OrderDate,
+format(OrderDate, 'm')
+from SalesDB.Sales.Orders
