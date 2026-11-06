@@ -171,3 +171,19 @@ select
 OrderDate,
 format(OrderDate, 'm')
 from SalesDB.Sales.Orders
+
+--Convert
+
+select
+convert(int, '123') as [String to Int CONVERT],
+convert(date, '2025-08-20') as [String to Date CONVERT],
+CreationTime,
+convert(date, CreationTime) as [DateTime to Date CONVERT]
+from SalesDB.Sales.Orders
+
+select
+CreationTime,
+convert(date, CreationTime) as [DateTime to Date],
+convert(varchar, CreationTime, 32) as [USA Std. Style:32],
+convert(varchar, CreationTime, 34) as [EURO Std. Style:34]
+from SalesDB.Sales.Orders
