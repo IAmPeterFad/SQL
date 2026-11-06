@@ -187,3 +187,14 @@ convert(date, CreationTime) as [DateTime to Date],
 convert(varchar, CreationTime, 32) as [USA Std. Style:32],
 convert(varchar, CreationTime, 34) as [EURO Std. Style:34]
 from SalesDB.Sales.Orders
+
+--Cast
+
+select
+cast('123' as int) as [String to Int],
+cast(123 as varchar) as [Int to string],
+cast('2025-08-20' as date) as [String to Date],
+cast('2025-08-20' as datetime2) as [String to Datetime],
+CreationTime,
+cast(CreationTime as date) as [DateTime to Date]
+from SalesDB.Sales.Orders
