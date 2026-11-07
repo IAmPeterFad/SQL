@@ -198,3 +198,41 @@ cast('2025-08-20' as datetime2) as [String to Datetime],
 CreationTime,
 cast(CreationTime as date) as [DateTime to Date]
 from SalesDB.Sales.Orders
+
+--Date Add
+
+select
+OrderID,
+OrderDate,
+dateadd(day, -10, OrderDate) as TenDaysBefore,
+dateadd(month, 3, OrderDate) as ThreeMonthsLater,
+dateadd(year, 2, OrderDate) as TwoYearsLater
+from salesDB.Sales.Orders
+
+--DateDifff
+--Calculate the ages of employees
+
+select
+EmployeeID,
+firstName,
+birthdate,
+datediff(year, BirthDate, getdate()) as Age
+from salesDB.Sales.employees
+
+--Find the average shipping duration in days for each month
+
+select
+datename(month, OrderDate) as OrderDate,
+avg(datediff(day, OrderDate, ShipDate)) as AvgShip
+from SalesDB.Sales.Orders
+group by datename(month, OrderDate)
+
+--Time gap analysis
+--Find the numbers of days between each order and previous order
+
+select
+OrderID,
+OrderDate as CurrentOrderDate,
+lag(OrderDate) over (order by orderdate) as PreviousOrderDate,
+datediff(day, lag(OrderDate) over (order by orderdate), OrderDate) as gap
+from SalesDB.Sales.Orders
