@@ -236,3 +236,12 @@ OrderDate as CurrentOrderDate,
 lag(OrderDate) over (order by orderdate) as PreviousOrderDate,
 datediff(day, lag(OrderDate) over (order by orderdate), OrderDate) as gap
 from SalesDB.Sales.Orders
+
+--Date Validation
+
+select 
+isdate('123') DateCheck1,
+isdate('2025-08-20') DateCheck2,
+isdate('20-08-2025') DateCheck3,
+isdate('2025') DateCheck4,
+isdate('08') DateCheck5
