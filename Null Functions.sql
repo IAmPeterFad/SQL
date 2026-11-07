@@ -1,5 +1,7 @@
 --Null Functions
 
+select* from SalesDB.Sales.Customers
+
 select
 customerid,
 firstName,
