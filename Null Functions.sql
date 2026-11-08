@@ -59,3 +59,16 @@ where score is null
 select*
 from SalesDB.Sales.Customers
 where score is not null
+
+--list all details of customers who have not placed any orders
+
+select
+c.CustomerID,
+c.FirstName,
+c.LastName,
+o.OrderID,
+o.OrderStatus
+from SalesDB.Sales.Customers as c
+left join SalesDB.Sales.Orders as o
+on c.CustomerID = o.CustomerID
+where o.OrderID is null
