@@ -72,3 +72,22 @@ from SalesDB.Sales.Customers as c
 left join SalesDB.Sales.Orders as o
 on c.CustomerID = o.CustomerID
 where o.OrderID is null
+
+-- Null || Empty string || Blank space
+
+with orders as (
+select 1 id, 'A' Category union
+select 2, null union
+select 3, '' union
+select 4, '  '
+)
+
+select*,
+datalength(Category) CategoryLen,
+--Data policy Null and Empty string
+datalength(trim(Category)) policy1,
+--Data policy Null only
+nullif(trim(Category), '') NullPolicy,
+--Data policy Null only
+coalesce(nullif(trim(Category), ''), 'unknown') UnknownPolicy
+from orders
