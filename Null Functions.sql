@@ -46,3 +46,16 @@ Quantity,
 Sales,
 Sales/nullif(Quantity, 0) as Prices
 from SalesDB.sales.Orders
+
+--Is Null and is not null
+--Identify the customers who have no scores
+
+select*
+from SalesDB.Sales.Customers
+where score is null
+
+--Show a list of customers who have scores
+
+select*
+from SalesDB.Sales.Customers
+where score is not null
