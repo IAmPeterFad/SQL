@@ -18,3 +18,31 @@ from SalesDB.Sales.Orders
 )t
 group by category
 order by TotalSales desc
+
+--Retrieve employee details with gender display as full text
+
+select EmployeeID,FirstName,LastName,
+case 
+	when Gender = 'M' then 'Male'
+	when Gender = 'F' then 'Female'
+	else 'Not available'
+end as Gender
+from SalesDB.Sales.Employees
+
+--Retrieve customers details with abbrevaited values
+
+select CustomerID,FirstName,LastName,Country,
+case
+	when country = 'Germany' then 'DE'
+	when country = 'USA' then 'US'
+	else 'n/a'
+end CountryAbrr,
+case Country
+	when 'Germany' then 'DE'
+	when 'USA' then 'US'
+	else 'n/a'
+end CountryAbrr2
+from SalesDB.Sales.Customers
+
+select distinct country
+from SalesDB.Sales.Customers
