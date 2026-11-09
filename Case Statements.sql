@@ -46,3 +46,34 @@ from SalesDB.Sales.Customers
 
 select distinct country
 from SalesDB.Sales.Customers
+
+--Find the average scores of customers and treat null as 0
+--Additionaly provide detials such as customerID and LastName
+
+select
+CustomerID,
+FirstName,
+LastName,
+score,
+case 
+	when Score is null then 0
+	else Score
+end as ScoreClean,
+avg(case 
+	when Score is null then 0
+	else Score
+end) over() AvgScores,
+avg(Score) over() AvgCustomer
+from SalesDB.Sales.Customers
+
+--Count how many times each customers has made an order with sales greater than 30
+
+select
+CustomerID,
+sum(case
+	when Sales > 30 then 1
+	else 0
+end) TotalOrdersHighSales,
+count(*) TotalOrders
+from SalesDB.Sales.Orders
+group by CustomerID
