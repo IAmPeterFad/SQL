@@ -78,4 +78,17 @@ OrderStatus,
 Sales,
 sum(Sales) over(partition by OrderStatus order by OrderDate 
 rows between current row and 2 following) TotalSales
+from SalesDB.Sales.Orders;
+
+select OrderDate,OrderDate,OrderStatus,ProductID,Sales,
+sum(Sales) over(partition by OrderStatus order by ProductID) TotalSales
 from SalesDB.Sales.Orders
+where ProductID in (101,102)
+
+--Rank the customers based on their total sales
+
+select CustomerID,
+sum(Sales) as Totalsales, 
+rank() over(order by sum(Sales) desc) as RankCustomers
+from SalesDB.Sales.Orders
+group by CustomerID
