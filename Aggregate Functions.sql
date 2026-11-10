@@ -61,3 +61,21 @@ from SalesDB.Sales.Orders
 select ProductID,OrderStatus,sales,
 sum(sales) over(partition by ProductID, OrderStatus) SalesByProductAndStatus
 from SalesDB.Sales.Orders
+
+--OrderBy
+
+--Rank each orders based on their sales from highest to the lowest
+--Additionally provide details such as orderid, orderdate
+
+select OrderID,OrderDate,Sales,
+rank() over(order by Sales desc) RankSales
+from SalesDB.Sales.Orders
+
+select
+OrderID,
+OrderDate,
+OrderStatus,
+Sales,
+sum(Sales) over(partition by OrderStatus order by OrderDate 
+rows between current row and 2 following) TotalSales
+from SalesDB.Sales.Orders
