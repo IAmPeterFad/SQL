@@ -125,3 +125,21 @@ from(
 	from SalesDB.Sales.OrdersArchive
 )t
 where CheckPK > 1
+
+--Sum
+
+--Find the total sales across all orders
+--Find the total sales of each product
+--Additionally provide details such as orderid and orderdate
+
+select OrderID,OrderDate,ProductID,Sales,
+sum(Sales) over() as TotalSales,
+sum(Sales) over(partition by ProductID) TotalSalesPerProduct
+from SalesDB.Sales.Orders
+
+--Find the percentage contribution of each product's sales to total sales
+
+select OrderID,ProductID,Sales,
+sum(Sales) over() TotalSales,
+round(cast (Sales as float)/sum(Sales) over() * 100, 2) PercentageOfTotal
+from SalesDB.Sales.Orders
