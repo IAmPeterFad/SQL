@@ -92,3 +92,36 @@ sum(Sales) as Totalsales,
 rank() over(order by sum(Sales) desc) as RankCustomers
 from SalesDB.Sales.Orders
 group by CustomerID
+
+--Find the total numbers of orders
+--Find the total numbers of orders for each customers
+--Additionaly provide details such as orderid and orderdate
+
+select OrderID,OrderDate,CustomerID,
+count(*) over() TotalOrders,
+count(*) over(partition by CustomerID) OrdersByCustomers
+from SalesDB.Sales.Orders
+
+--Find the total numbers of customers
+--Find the total numbers of scores for each customers
+--Additionally provide all customers details
+
+select*,
+count(CustomerID) over() TotalCustomers,
+count(Score) over() TotalScore
+from SalesDB.Sales.Customers
+
+--Check whether the table 'orders' contains any duplicate rows
+
+select
+OrderID,
+count(*) over(partition by OrderID) CheckPK
+from SalesDB.Sales.Orders
+
+select*
+from( 
+	select OrderID,
+	count(OrderID) over(partition by OrderID) CheckPK
+	from SalesDB.Sales.OrdersArchive
+)t
+where CheckPK > 1
