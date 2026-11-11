@@ -175,3 +175,33 @@ from(
 )t 
 where Sales > AvgSales
 
+--Max and Min
+
+--Find the highest and lowest sales across orders
+--Find the highest and lowest sales across each product 
+--And provide additionaly detail such as orderid and orderdate
+
+select OrderID,OrderDate,ProductID,Sales,
+max(Sales) over() HighestSales,
+min(Sales) over() LowestSales,
+max(Sales) over(partition by ProductID) HighestPerProduct,
+min(Sales) over(partition by ProductID) LowestPerProduct
+from SalesDB.Sales.Orders
+
+--Show the employees who have the highest salaries
+
+select*
+from(
+	select *,
+max(Salary) over() HighestSalary
+from SalesDB.Sales.Employees
+)t where Salary = HighestSalary
+
+--Calculate the deviation of each sales from both the max and min sales amounts
+
+select OrderID,OrderDate,ProductID,Sales,
+max(Sales) over() HighestSales,
+min(Sales) over() LowestSales,
+Sales - min(Sales) over() DeviationMIn,
+max(Sales) over() - Sales DeviationMax 
+from SalesDB.Sales.Orders
