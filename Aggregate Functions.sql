@@ -143,3 +143,35 @@ select OrderID,ProductID,Sales,
 sum(Sales) over() TotalSales,
 round(cast (Sales as float)/sum(Sales) over() * 100, 2) PercentageOfTotal
 from SalesDB.Sales.Orders
+
+--Avg
+
+--Find the average sales across all orders
+--and the average sales of each product
+--Additionaly provide details such as the orderid and ordername
+
+select OrderID,OrderDate,ProductID,sales,
+avg(Sales) over() AvgSales,
+avg(Sales) over(partition by ProductID) AvgSalesPerProduct
+from SalesDB.Sales.Orders
+
+--Find the average score of customers 
+--Additionally the Provide details such as Customer ID and LastName
+
+select CustomerID, coalesce(LastName, 'Unknown') LastName,
+coalesce(Score, 0) Score,
+avg(coalesce(Score, 0)) over() AvgScore
+from SalesDB.Sales.Customers
+
+--Find all orders where the sales are higher than the average sales across all orders.
+
+select*
+from(
+	select 
+	OrderID, 
+	Sales,
+	avg(Sales) over() AvgSales
+	from SalesDB.Sales.Orders
+)t 
+where Sales > AvgSales
+
