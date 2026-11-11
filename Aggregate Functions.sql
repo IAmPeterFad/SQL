@@ -205,3 +205,19 @@ min(Sales) over() LowestSales,
 Sales - min(Sales) over() DeviationMIn,
 max(Sales) over() - Sales DeviationMax 
 from SalesDB.Sales.Orders
+
+--Runing Total and Rolling Total
+
+--Calculate the moving average of sales for each product over time
+
+select OrderID,ProductID,OrderDate,Sales,
+avg(Sales) over(partition by ProductID order by OrderDate 
+rows between unbounded preceding and current row) MovingAvg
+from SalesDB.Sales.Orders
+
+--Calculate the moving average of sales for each product over time, including only the next order
+
+select OrderID,OrderDate,ProductID,Sales,
+avg(Sales) over(partition by ProductID order by OrderDate
+rows between current row and 1 following) MovingAvg
+from SalesDB.Sales.Orders
